@@ -4,8 +4,6 @@
 
 show index from hist\_5m\_data;
 
-
-
 MySQL EXPLAIN命令是查询性能优化不可缺少的一部分，EXPLAIN 显示了 MySQL 如何使用索引来处理 SELECT 语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句
 
 mysql&gt; explain select \* from hist\_day\_data where code = '600000';
@@ -22,8 +20,6 @@ mysql&gt; explain select \* from hist\_day\_data where code = '600000';
 
 1 row in set, 1 warning \(0.57 sec\)
 
-
-
 mysql&gt; explain select \* from hist\_day\_data where date = '2018-09-04' and code = '600000';
 
 +----+-------------+---------------+------------+-------+---------------+---------+---------+-------------+------+----------+-------+
@@ -37,8 +33,6 @@ mysql&gt; explain select \* from hist\_day\_data where date = '2018-09-04' and c
 +----+-------------+---------------+------------+-------+---------------+---------+---------+-------------+------+----------+-------+
 
 1 row in set, 1 warning \(0.07 sec\)
-
-
 
 mysql&gt; explain select \* from hist\_day\_data where date = '2018-09-04';
 
@@ -54,39 +48,25 @@ mysql&gt; explain select \* from hist\_day\_data where date = '2018-09-04';
 
 1 row in set, 1 warning \(0.00 sec\)
 
-
-
-mysql&gt; 
-
-
-
-
+mysql&gt;
 
 复合主键在MySQL中的性能缺点
 
-https://codeday.me/bug/20170916/72408.html
+[https://codeday.me/bug/20170916/72408.html](https://codeday.me/bug/20170916/72408.html)
 
+https://oomake.com/question/278819
 
+https://stackoverrun.com/cn/q/278457
 
 INSERT和UPDATE性能变化不大：对于\(INT\)和\(INT，INT\)键几乎相同。
 
-
-
 复合PRIMARY KEY的SELECT性能取决于许多因素。
-
-
 
 如果您的表是InnoDB，那么该表隐式地聚集在PRIMARY KEY值上。
 
-
-
 这意味着如果两个值都包含键，那么对这两个值的搜索将更快;不需要额外的键查找。
 
-
-
 假设你的查询是这样的：
-
-
 
 SELECT  \*
 
@@ -94,131 +74,97 @@ FROM    mytable
 
 WHERE   col1 = @value1
 
-        AND col2 = @value2
-
-
+```
+    AND col2 = @value2
+```
 
 并且表布局是这样的：
 
-
-
 CREATE TABLE mytable \(
 
-        col1 INT NOT NULL,
+```
+    col1 INT NOT NULL,
 
-        col2 INT NOT NULL,
+    col2 INT NOT NULL,
 
-        data VARCHAR\(200\) NOT NULL,
+    data VARCHAR\(200\) NOT NULL,
 
-        PRIMARY KEY pk\_mytable \(col1, col2\)
+    PRIMARY KEY pk\_mytable \(col1, col2\)
+```
 
 \) ENGINE=InnoDB
-
-
 
 ，引擎将仅需要在表本身中查找确切的键值。
 
-
-
 如果您使用自动增量字段作为假ID：
-
-
 
 CREATE TABLE mytable \(
 
-        id INT NOT NULL AUTO\_INCREMENT PRIMARY KEY,
+```
+    id INT NOT NULL AUTO\_INCREMENT PRIMARY KEY,
 
-        col1 INT NOT NULL,
+    col1 INT NOT NULL,
 
-        col2 INT NOT NULL,
+    col2 INT NOT NULL,
 
-        data VARCHAR\(200\) NOT NULL,
+    data VARCHAR\(200\) NOT NULL,
 
-        UNIQUE KEY ix\_mytable\_col1\_col2 \(col1, col2\)
+    UNIQUE KEY ix\_mytable\_col1\_col2 \(col1, col2\)
+```
 
 \) ENGINE=InnoDB
 
-
-
 ，则引擎将需要首先查找索引ix\_mytable\_col1\_col2中的值\(col1，col2\)，从索引\(id的值\)检索行指针，并通过表中的id进行另一次查找。
-
-
 
 但是，对于MyISAM表，这没有什么区别，因为MyISAM表是堆组织的，并且行指针只是文件偏移量。
 
-
-
 在这两种情况下，将创建相同的索引\(对于PRIMARY KEY或UNIQUE KEY\)，并且将以相同的方式使用。
-
-
-
-
 
 从带有限制的MySQL表中选择平均值
 
-https://ask.helplib.com/sql/post\_975428
+[https://ask.helplib.com/sql/post\_975428](https://ask.helplib.com/sql/post_975428)
 
-https://codeday.me/bug/20180131/128535.html
+[https://codeday.me/bug/20180131/128535.html](https://codeday.me/bug/20180131/128535.html)
 
-https://ask.helplib.com/excel/post\_6498338
-
-
+[https://ask.helplib.com/excel/post\_6498338](https://ask.helplib.com/excel/post_6498338)
 
 我试图获得最低 5个定价项目的平均值，按附加到它们的用户名分组。 但是，下面的查询给出了每个用户\( 当然价格是多少\)的平均价格，但我只想要一个答案。
 
-
-
 我认为这就是你想要的：
-
-
 
 SELECT AVG\(items.price\)
 
- FROM \(SELECT t.price
+FROM \(SELECT t.price
 
- FROM TABLE t
+FROM TABLE t
 
- WHERE t.price&gt; '0' 
+WHERE t.price&gt; '0'
 
- AND t.item\_id = '$id'
+AND t.item\_id = '$id'
 
- ORDER BY t.price
+ORDER BY t.price
 
- LIMIT 5\) items
-
-
+LIMIT 5\) items
 
 它将返回 5最低价格的平均值- 一个单一的答案。
 
-
-
-
-
 MySQL索引原理及慢查询优化
 
-https://tech.meituan.com/mysql\_index.html
+[https://tech.meituan.com/mysql\_index.html](https://tech.meituan.com/mysql_index.html)
 
+[https://www.zhihu.com/question/27603761](https://www.zhihu.com/question/27603761)
 
+[https://www.kancloud.cn/db-design/mysql-dba/596722](https://www.kancloud.cn/db-design/mysql-dba/596722)
 
-https://www.zhihu.com/question/27603761
+[https://www.kancloud.cn/thinkphp/mysql-faq/47451](https://www.kancloud.cn/thinkphp/mysql-faq/47451)
 
-https://www.kancloud.cn/db-design/mysql-dba/596722
+[http://seanlook.com/2016/05/13/mysql-innodb-primary\_key/](http://seanlook.com/2016/05/13/mysql-innodb-primary_key/)
 
-https://www.kancloud.cn/thinkphp/mysql-faq/47451
+[http://seanlook.com/2016/05/11/mysql-dev-principle-ec/](http://seanlook.com/2016/05/11/mysql-dev-principle-ec/)
 
-http://seanlook.com/2016/05/13/mysql-innodb-primary\_key/
-
-http://seanlook.com/2016/05/11/mysql-dev-principle-ec/
-
-http://www.ywnds.com/?p=8735
-
-
-
-
+[http://www.ywnds.com/?p=8735](http://www.ywnds.com/?p=8735)
 
 建索引的几大原则
-
-
 
 1.最左前缀匹配原则，非常重要的原则，mysql会一直向右匹配直到遇到范围查询\(&gt;、&lt;、between、like\)就停止匹配，比如a = 1 and b = 2 and c &gt; 3 and d = 4 如果建立\(a,b,c,d\)顺序的索引，d是用不到索引的，如果建立\(a,b,d,c\)的索引则都可以用到，a,b,d的顺序可以任意调整。
 
