@@ -1,10 +1,12 @@
 # MySQL索引优化
 
-查看索引
+* ##### 查看索引
 
 show index from hist\_5m\_data;
 
-MySQL EXPLAIN命令是查询性能优化不可缺少的一部分，EXPLAIN 显示了 MySQL 如何使用索引来处理 SELECT 语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句
+* ##### MySQL EXPLAIN命令
+
+EXPLAIN命令是查询性能优化不可缺少的一部分，EXPLAIN 显示了 MySQL 如何使用索引来处理 SELECT 语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句
 
 mysql&gt; explain select \* from hist\_day\_data where code = '600000';
 
@@ -50,13 +52,13 @@ mysql&gt; explain select \* from hist\_day\_data where date = '2018-09-04';
 
 mysql&gt;
 
-复合主键在MySQL中的性能缺点
+* ##### 复合主键在MySQL中的性能缺点
 
 [https://codeday.me/bug/20170916/72408.html](https://codeday.me/bug/20170916/72408.html)
 
-https://oomake.com/question/278819
+[https://oomake.com/question/278819](https://oomake.com/question/278819)
 
-https://stackoverrun.com/cn/q/278457
+[https://stackoverrun.com/cn/q/278457](https://stackoverrun.com/cn/q/278457)
 
 INSERT和UPDATE性能变化不大：对于\(INT\)和\(INT，INT\)键几乎相同。
 
@@ -120,7 +122,7 @@ CREATE TABLE mytable \(
 
 在这两种情况下，将创建相同的索引\(对于PRIMARY KEY或UNIQUE KEY\)，并且将以相同的方式使用。
 
-从带有限制的MySQL表中选择平均值
+* ##### 从带有限制的MySQL表中选择平均值
 
 [https://ask.helplib.com/sql/post\_975428](https://ask.helplib.com/sql/post_975428)
 
@@ -148,7 +150,7 @@ LIMIT 5\) items
 
 它将返回 5最低价格的平均值- 一个单一的答案。
 
-MySQL索引原理及慢查询优化
+* ##### MySQL索引原理及慢查询优化
 
 [https://tech.meituan.com/mysql\_index.html](https://tech.meituan.com/mysql_index.html)
 
