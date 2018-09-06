@@ -361,6 +361,280 @@ alter table hist_month_data add index date_index(date);
 condapip install --upgrade tushare
 ```
 
+* ##### mysql setup
+
+```
+chenlianghong@chenlianghong-Latitude-E5270:/etc/apt$ mysql -u root -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+chenlianghong@chenlianghong-Latitude-E5270:/etc/apt$ mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.18 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+mysql>
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.21 sec)
+
+mysql> create database stock default character set=utf8;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| stock              |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> create user stck identified by 'stck&sql';
+Query OK, 0 rows affected (0.27 sec)
+
+mysql> grant all on stock.* to stck;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> exit;
+Bye
+chenlianghong@chenlianghong-Latitude-E5270:/etc/apt$ mysql -u stck -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.18 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| stock              |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> use stock;
+Database changed
+mysql>
+mysql>
+mysql> create table trade_data
+    -> (
+    ->   datetime datetime not null,
+    ->   code mediumint(6) zerofill not null,
+    ->   name varchar(6) not null,
+    ->   changepercent float not null,
+    ->   trade float not null,
+    ->   open float not null,
+    ->   high float not null,
+    ->   low float not null,
+    ->   settlement float not null,
+    ->   volume bigint not null,
+    ->   turnoverratio double not null,
+    ->   amount bigint not null,
+    ->   per double not null,
+    ->   pb double not null,
+    ->   mktcap double not null,
+    ->   nmc double not null,
+    ->   primary key (code, datetime)
+    -> ) engine=innodb default charset=utf8;
+Query OK, 0 rows affected (1.23 sec)
+
+mysql> create table code_data (
+    ->   code mediumint(6) unsigned zerofill NOT NULL,
+    ->   name varchar(6) NOT NULL,
+    ->   PRIMARY KEY (code)
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+Query OK, 0 rows affected (0.50 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> show tables;
++-----------------+
+| Tables_in_stock |
++-----------------+
+| code_data       |
+| trade_data      |
++-----------------+
+2 rows in set (0.05 sec)
+
+mysql> describe code_data;
++-------+--------------------------------+------+-----+---------+-------+
+| Field | Type                           | Null | Key | Default | Extra |
++-------+--------------------------------+------+-----+---------+-------+
+| code  | mediumint(6) unsigned zerofill | NO   | PRI | NULL    |       |
+| name  | varchar(6)                     | NO   |     | NULL    |       |
++-------+--------------------------------+------+-----+---------+-------+
+2 rows in set (0.11 sec)
+
+mysql> describe trade_data;
++---------------+--------------------------------+------+-----+---------+-------+
+| Field         | Type                           | Null | Key | Default | Extra |
++---------------+--------------------------------+------+-----+---------+-------+
+| datetime      | datetime                       | NO   | PRI | NULL    |       |
+| code          | mediumint(6) unsigned zerofill | NO   | PRI | NULL    |       |
+| name          | varchar(6)                     | NO   |     | NULL    |       |
+| changepercent | float                          | NO   |     | NULL    |       |
+| trade         | float                          | NO   |     | NULL    |       |
+| open          | float                          | NO   |     | NULL    |       |
+| high          | float                          | NO   |     | NULL    |       |
+| low           | float                          | NO   |     | NULL    |       |
+| settlement    | float                          | NO   |     | NULL    |       |
+| volume        | bigint(20)                     | NO   |     | NULL    |       |
+| turnoverratio | double                         | NO   |     | NULL    |       |
+| amount        | bigint(20)                     | NO   |     | NULL    |       |
+| per           | double                         | NO   |     | NULL    |       |
+| pb            | double                         | NO   |     | NULL    |       |
+| mktcap        | double                         | NO   |     | NULL    |       |
+| nmc           | double                         | NO   |     | NULL    |       |
++---------------+--------------------------------+------+-----+---------+-------+
+16 rows in set (0.01 sec)
+
+mysql> create table hist_data
+    -> (
+    ->   date date not null,
+    ->   code mediumint(6) zerofill not null,
+    ->   open float not null,
+    ->   high float not null,
+    ->   close float not null,
+    ->   low float not null,
+    ->   volume float not null,
+    ->   price_change float not null,
+    ->   p_change float not null,
+    ->   ma5 float not null,
+    ->   ma10 float not null,
+    ->   ma20 float not null,
+    ->   v_ma5 float not null,
+    ->   v_ma10 float not null,
+    ->   v_ma20 float not null,
+    ->   turnover float not null,
+    ->   primary key (code, date)
+    -> ) engine=innodb default charset=utf8;
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> create table k_data
+    -> (
+    ->   date date not null,
+    ->   code mediumint(6) zerofill not null,
+    ->   open float not null,
+    ->   close float not null,
+    ->   high float not null,
+    ->   low float not null,
+    ->   volume bigint not null,
+    ->   primary key (code, date)
+    -> ) engine=innodb default charset=utf8;
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_stock |
++-----------------+
+| code_data       |
+| hist_data       |
+| k_data          |
+| trade_data      |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql>
+
+
+create table trade_data
+(
+  datetime datetime not null,
+  code mediumint(6) zerofill not null,
+  name varchar(6) not null,
+  changepercent float not null,
+  trade float not null,
+  open float not null,
+  high float not null,
+  low float not null,
+  settlement float not null,
+  volume bigint not null,
+  turnoverratio double not null,
+  amount bigint not null,
+  per double not null,
+  pb double not null,
+  mktcap double not null,
+  nmc double not null,
+  primary key (code, datetime)
+) engine=innodb default charset=utf8;
+
+
+create table code_data (
+  code mediumint(6) unsigned zerofill NOT NULL,
+  name varchar(6) NOT NULL,
+  PRIMARY KEY (code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+create table hist_data
+(
+  date date not null,
+  code mediumint(6) zerofill not null,
+  open float not null,
+  high float not null,
+  close float not null,
+  low float not null,
+  volume float not null,
+  price_change float not null,
+  p_change float not null,
+  ma5 float not null,
+  ma10 float not null,
+  ma20 float not null,
+  v_ma5 float not null,
+  v_ma10 float not null,
+  v_ma20 float not null,
+  turnover float not null,
+  primary key (code, date)
+) engine=innodb default charset=utf8;
+
+
+create table k_data
+(
+  date date not null,
+  code mediumint(6) zerofill not null,
+  open float not null,
+  close float not null,
+  high float not null,
+  low float not null,
+  volume bigint not null,
+  primary key (code, date)
+) engine=innodb default charset=utf8;
+
+
+conda install -c anaconda mysql-connector-python
+conda install -c anaconda sqlalchemy
+pip install tushare
+```
+
 * ##### 
 
 
