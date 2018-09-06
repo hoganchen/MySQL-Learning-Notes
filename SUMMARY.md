@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [MySQL命令](mysqlming-ling.md)
+* [从带有限制的MySQL表中选择平均值](cong-dai-you-xian-zhi-de-mysql-biao-zhong-xuan-ze-ping-jun-zhi.md)
 * [mysql索引优化](mysqlsuo-yin-you-hua.md)
 * [MySQL知识点](mysqlzhi-shi-dian.md)
 * [MySQL索引](mysqlsuo-yin.md)
