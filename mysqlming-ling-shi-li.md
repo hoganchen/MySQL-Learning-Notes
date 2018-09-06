@@ -69,10 +69,13 @@ mysql> help create table;
 * ##### 创建索引
 
 ```
-mysql> alter table hist_30m_data add index date_index(date);
-mysql> alter table hist_5m_data add index date_index(date);
-mysql> alter table hist_15m_data add index date_index(date);
-mysql> alter table hist_60m_data add index date_index(date);
+alter table hist_5m_data add index date_index(date);
+alter table hist_15m_data add index date_index(date);
+alter table hist_30m_data add index date_index(date);
+alter table hist_60m_data add index date_index(date);
+alter table hist_day_data add index date_index(date);
+alter table hist_week_data add index date_index(date);
+alter table hist_month_data add index date_index(date);
 ```
 
 * ##### 查看表结构
