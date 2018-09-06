@@ -52,7 +52,15 @@ mysql> show warnings;
 
 * ##### help命令
 
-
+```
+mysql> help;
+mysql> help contents;
+mysql> help table maintenance;
+mysql> help check table;
+mysql> help create;
+mysql> help create index;
+mysql> help create table;
+```
 
 * ##### 
 
