@@ -8,7 +8,7 @@ show index from hist_5m_data;
 
 * ##### explain命令
 
-https://www.kancloud.cn/thinkphp/mysql-design-optimalize/39319
+[https://www.kancloud.cn/thinkphp/mysql-design-optimalize/39319](https://www.kancloud.cn/thinkphp/mysql-design-optimalize/39319)
 
 EXPLAIN命令是查询性能优化不可缺少的一部分，EXPLAIN 显示了 MySQL 如何使用索引来处理 SELECT 语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句
 
@@ -54,7 +54,7 @@ mysql> show warnings;
 
 * ##### help命令
 
-https://www.ilanni.com/?p=8157
+[https://www.ilanni.com/?p=8157](https://www.ilanni.com/?p=8157)
 
 ```
 mysql> help;
@@ -99,6 +99,22 @@ mysql> select count(distinct date)/count(*), count(distinct code)/count(*), coun
 1 row in set (1.04 sec)
 ```
 
+* ##### 查看表的条目数
+
+```
+select count(*) from hist_5m_data;
+select count(*) from hist_15m_data;
+select count(*) from hist_30m_data;
+select count(*) from hist_60m_data;
+select count(*) from hist_day_data;
+select count(*) from hist_week_data;
+select count(*) from hist_month_data;
+```
+
+* ##### 
+* ##### 
+* ##### 
+* ##### 
 * ##### 
 
 
