@@ -62,6 +62,15 @@ mysql> help create index;
 mysql> help create table;
 ```
 
+* ##### 创建索引
+
+```
+mysql> alter table hist_30m_data add index date_index(date);
+```
+
+* ##### 
+* ##### 
+* ##### 
 * ##### 
 
 
