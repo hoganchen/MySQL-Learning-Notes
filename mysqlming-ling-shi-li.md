@@ -66,6 +66,9 @@ mysql> help create table;
 
 ```
 mysql> alter table hist_30m_data add index date_index(date);
+mysql> alter table hist_5m_data add index date_index(date);
+mysql> alter table hist_15m_data add index date_index(date);
+mysql> alter table hist_60m_data add index date_index(date);
 ```
 
 * ##### 查看表结构
@@ -90,7 +93,6 @@ mysql> select count(distinct date)/count(*), count(distinct code)/count(*), coun
 |                        0.0015 |                        0.0025 |  1397377 |
 +-------------------------------+-------------------------------+----------+
 1 row in set (1.04 sec)
-
 ```
 
 * ##### 
