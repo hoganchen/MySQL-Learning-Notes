@@ -8,6 +8,8 @@ show index from hist_5m_data;
 
 * ##### explain命令
 
+https://www.kancloud.cn/thinkphp/mysql-design-optimalize/39319
+
 EXPLAIN命令是查询性能优化不可缺少的一部分，EXPLAIN 显示了 MySQL 如何使用索引来处理 SELECT 语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句
 
 ```
@@ -51,6 +53,8 @@ mysql> show warnings;
 ```
 
 * ##### help命令
+
+https://www.ilanni.com/?p=8157
 
 ```
 mysql> help;
