@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [MySQL命令示例](mysqlming-ling-shi-li.md)
+* [MySQL命令备份](mysqlming-ling-bei-fen.md)
 * [从带有限制的MySQL表中选择平均值](cong-dai-you-xian-zhi-de-mysql-biao-zhong-xuan-ze-ping-jun-zhi.md)
 * [MySQL索引](mysqlsuo-yin.md)
 * [MySQL中KEY vs PRIMARY KEY vs UNIQUE KEY vs INDEX的区别](mysqlzhong-key-vs-primary-key-vs-unique-key-vs-index-de-qu-bie.md)
