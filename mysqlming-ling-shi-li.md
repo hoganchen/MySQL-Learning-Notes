@@ -68,9 +68,31 @@ mysql> help create table;
 mysql> alter table hist_30m_data add index date_index(date);
 ```
 
-* ##### 
-* ##### 
-* ##### 
+* ##### 查看表结构
+
+```
+mysql> describe hist_30m_data;
+```
+
+* ##### 查看表创建命令
+
+```
+mysql> show create table hist_30m_data;
+```
+
+* ##### 最左前缀索引选择经验法则（高性能MySQL, P197）
+
+```
+mysql> select count(distinct date)/count(*), count(distinct code)/count(*), count(*) from hist_30m_data;
++-------------------------------+-------------------------------+----------+
+| count(distinct date)/count(*) | count(distinct code)/count(*) | count(*) |
++-------------------------------+-------------------------------+----------+
+|                        0.0015 |                        0.0025 |  1397377 |
++-------------------------------+-------------------------------+----------+
+1 row in set (1.04 sec)
+
+```
+
 * ##### 
 
 
