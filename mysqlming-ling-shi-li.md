@@ -104,7 +104,14 @@ mysql> select count(distinct date)/count(*), count(distinct code)/count(*), coun
 
 * ##### 查看表的条目数
 
+https://zhuanlan.zhihu.com/p/28397595
+
+https://dev.mysql.com/doc/refman/5.7/en/group-by-functions.html\#function\_count
+
 ```
+InnoDB handles SELECT COUNT(*) and SELECT COUNT(1) operations in the same way. 
+There is no performance difference. 
+
 select count(*) from hist_5m_data;
 select count(*) from hist_15m_data;
 select count(*) from hist_30m_data;
@@ -112,9 +119,90 @@ select count(*) from hist_60m_data;
 select count(*) from hist_day_data;
 select count(*) from hist_week_data;
 select count(*) from hist_month_data;
+
+select count(1) from hist_day_data;
+select count(1) from hist_week_data;
+select count(1) from hist_month_data;
+
+
 ```
 
-* ##### 
+* ##### 日期加减操作
+
+https://www.yiibai.com/mysql/today.html
+
+http://www.w3school.com.cn/sql/sql\_dates.asp
+
+http://www.w3school.com.cn/sql/func\_date\_sub.asp
+
+http://wiki.jikexueyuan.com/project/mysql/useful-functions/time-functions.html
+
+```
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2018-12-07 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(curdate(), interval 2 year);
++--------------------------------------+
+| date_sub(curdate(), interval 2 year) |
++--------------------------------------+
+| 2016-12-07                           |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(curdate(), interval 2 month);
++---------------------------------------+
+| date_sub(curdate(), interval 2 month) |
++---------------------------------------+
+| 2018-10-07                            |
++---------------------------------------+
+1 row in set (0.02 sec)
+
+mysql> select date_sub(curdate(), interval 2 day);
++-------------------------------------+
+| date_sub(curdate(), interval 2 day) |
++-------------------------------------+
+| 2018-12-05                          |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(curdate(), interval 2 year);
++--------------------------------------+
+| date_add(curdate(), interval 2 year) |
++--------------------------------------+
+| 2020-12-07                           |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(curdate(), interval 2 month);
++---------------------------------------+
+| date_add(curdate(), interval 2 month) |
++---------------------------------------+
+| 2019-02-07                            |
++---------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select date_add(curdate(), interval 2 day);
++-------------------------------------+
+| date_add(curdate(), interval 2 day) |
++-------------------------------------+
+| 2018-12-09                          |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select curdate() - 365;
++-----------------+
+| curdate() - 365 |
++-----------------+
+|        20180842 |
++-----------------+
+1 row in set (0.00 sec)
+```
+
 * ##### 
 * ##### 
 * ##### 
