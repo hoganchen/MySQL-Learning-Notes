@@ -104,9 +104,9 @@ mysql> select count(distinct date)/count(*), count(distinct code)/count(*), coun
 
 * ##### 查看表的条目数
 
-https://zhuanlan.zhihu.com/p/28397595
+[https://zhuanlan.zhihu.com/p/28397595](https://zhuanlan.zhihu.com/p/28397595)
 
-https://dev.mysql.com/doc/refman/5.7/en/group-by-functions.html\#function\_count
+[https://dev.mysql.com/doc/refman/5.7/en/group-by-functions.html\#function\_count](https://dev.mysql.com/doc/refman/5.7/en/group-by-functions.html#function_count)
 
 ```
 InnoDB handles SELECT COUNT(*) and SELECT COUNT(1) operations in the same way. 
@@ -123,21 +123,27 @@ select count(*) from hist_month_data;
 select count(1) from hist_day_data;
 select count(1) from hist_week_data;
 select count(1) from hist_month_data;
-
-
 ```
 
 * ##### 日期加减操作
 
-https://www.yiibai.com/mysql/today.html
+[https://www.yiibai.com/mysql/today.html](https://www.yiibai.com/mysql/today.html)
 
-http://www.w3school.com.cn/sql/sql\_dates.asp
+[http://www.w3school.com.cn/sql/sql\_dates.asp](http://www.w3school.com.cn/sql/sql_dates.asp)
 
-http://www.w3school.com.cn/sql/func\_date\_sub.asp
+[http://www.w3school.com.cn/sql/func\_date\_sub.asp](http://www.w3school.com.cn/sql/func_date_sub.asp)
 
-http://wiki.jikexueyuan.com/project/mysql/useful-functions/time-functions.html
+[http://wiki.jikexueyuan.com/project/mysql/useful-functions/time-functions.html](http://wiki.jikexueyuan.com/project/mysql/useful-functions/time-functions.html)
 
 ```
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2018-12-07 16:30:23 |
++---------------------+
+1 row in set (0.02 sec)
+
 mysql> select curdate();
 +------------+
 | curdate()  |
