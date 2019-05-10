@@ -236,11 +236,29 @@ mysql> select code, count(*) as code_count from hist_extend_day_data group by co
 | 600004 |       1155 |
 | 300357 |       1155 |
 ......
+
+mysql> select code, count(1) as code_count from hist_extend_day_data group by code order by code_count desc;
++--------+------------+
+| code   | code_count |
++--------+------------+
+| 000001 |       1157 |
+| 000402 |       1156 |
+| 000762 |       1156 |
+| 002232 |       1156 |
+| 300321 |       1156 |
+| 002271 |       1156 |
+| 002561 |       1156 |
+| 000880 |       1156 |
+......
 ```
 
 * ##### 查询某一字段非重复次数
 
 [https://www.crifan.com/mysql\_check\_all\_unique\_count/](https://www.crifan.com/mysql_check_all_unique_count/) 
+
+https://www.w3cschool.cn/mysql/mysql-handling-duplicates.html
+
+https://www.runoob.com/mysql/mysql-handling-duplicates.html
 
 ```
 mysql> select DISTINCT code from hist_extend_day_data;
@@ -254,6 +272,19 @@ mysql> select DISTINCT code from hist_extend_day_data;
 | 002747 |
 ......
 
+mysql> select code from hist_extend_day_data group by code having count(1) > 1;
++--------+
+| code   |
++--------+
+| 000001 |
+| 000002 |
+| 000004 |
+| 000005 |
+| 000046 |
+| 000048 |
+| 000049 |
+| 000050 |
+......
 
 mysql> select count(DISTINCT code) as code_count, count(*) as line_count from hist_extend_day_data;
 +------------+------------+
