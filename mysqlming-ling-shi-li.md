@@ -215,9 +215,62 @@ mysql> select concat(date_sub(curdate(), interval 1 day), ' 15:00:00');
 | 2018-12-06 15:00:00                                      |
 +----------------------------------------------------------+
 1 row in set (0.00 sec)
-
 ```
 
+* ##### 查询某一字段中重复的个数并且按照次数排序
+
+[https://blog.csdn.net/xqhlsjslcy/article/details/53389222](https://blog.csdn.net/xqhlsjslcy/article/details/53389222) 
+
+```
+mysql> select code, count(*) as code_count from hist_extend_day_data group by code order by code_count desc;
++--------+------------+
+| code   | code_count |
++--------+------------+
+| 000001 |       1157 |
+| 000762 |       1156 |
+| 000880 |       1156 |
+| 002561 |       1156 |
+| 000402 |       1156 |
+| 300321 |       1156 |
+| 600616 |       1155 |
+| 600004 |       1155 |
+| 300357 |       1155 |
+......
+```
+
+* ##### 查询某一字段非重复次数
+
+[https://www.crifan.com/mysql\_check\_all\_unique\_count/](https://www.crifan.com/mysql_check_all_unique_count/) 
+
+```
+mysql> select DISTINCT code from hist_extend_day_data;
++--------+
+| code   |
++--------+
+| 000516 |
+| 000662 |
+| 002049 |
+| 002122 |
+| 002747 |
+......
+
+
+mysql> select count(DISTINCT code) as code_count, count(*) as line_count from hist_extend_day_data;
++------------+------------+
+| code_count | line_count |
++------------+------------+
+|        334 |     245859 |
++------------+------------+
+1 row in set (0.33 sec)
+```
+
+* ##### 
+* ##### 
+* ##### 
+* ##### 
+* ##### 
+* ##### 
+* ##### 
 * ##### 
 * ##### 
 * ##### 
