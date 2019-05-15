@@ -9,5 +9,4 @@
 * [MySQL主键与唯一索引以及普通索引的区别](mysqlzhu-jian-yu-wei-yi-suo-yin-yi-ji-pu-tong-suo-yin-de-qu-bie.md)
 * [复合主键在MySQL中的性能缺点](fu-he-zhu-jian-zai-mysql-zhong-de-xing-neng-que-dian.md)
 * [MySQL索引原理及慢查询优化](mysqlsuo-yin-yuan-li-ji-man-cha-xun-you-hua.md)
-* [MySQL索引详解](mysqlsuo-yin-xiang-jie.md)
 
