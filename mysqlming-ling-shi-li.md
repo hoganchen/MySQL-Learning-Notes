@@ -476,7 +476,12 @@ AS
 
 [https://blog.csdn.net/lightofmiracle/article/details/74004511](https://blog.csdn.net/lightofmiracle/article/details/74004511)
 
-* ##### 
+##### MySQL随机读数据
+
+http://ourmysql.com/archives/524
+
+https://www.zhihu.com/question/29824101
+
 * ##### 
 * ##### 
 * ##### 
