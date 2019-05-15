@@ -256,9 +256,9 @@ mysql> select code, count(1) as code_count from hist_extend_day_data group by co
 
 [https://www.crifan.com/mysql\_check\_all\_unique\_count/](https://www.crifan.com/mysql_check_all_unique_count/) 
 
-https://www.w3cschool.cn/mysql/mysql-handling-duplicates.html
+[https://www.w3cschool.cn/mysql/mysql-handling-duplicates.html](https://www.w3cschool.cn/mysql/mysql-handling-duplicates.html)
 
-https://www.runoob.com/mysql/mysql-handling-duplicates.html
+[https://www.runoob.com/mysql/mysql-handling-duplicates.html](https://www.runoob.com/mysql/mysql-handling-duplicates.html)
 
 ```
 mysql> select DISTINCT code from hist_extend_day_data;
@@ -295,7 +295,175 @@ mysql> select count(DISTINCT code) as code_count, count(*) as line_count from hi
 1 row in set (0.33 sec)
 ```
 
-* ##### 
+* ##### MySQL复制表
+
+https://www.runoob.com/mysql/mysql-clone-tables.html
+
+https://blog.csdn.net/xiao190128/article/details/54890367
+
+第一、只复制表结构到新表
+
+```
+create table 新表 select * from 旧表 where 1=2
+或者
+create table 新表 like 旧表
+```
+
+第二、复制表结构及数据到新表
+
+```
+create table新表 select * from 旧表
+```
+
+另一种完整复制表的方法:
+
+```
+CREATE TABLE targetTable LIKE sourceTable;
+INSERT INTO targetTable SELECT * FROM sourceTable;
+```
+
+其他:
+
+可以拷贝一个表中其中的一些字段:
+
+```
+CREATE TABLE newadmin AS
+(
+    SELECT username, password FROM admin
+)
+```
+
+可以将新建的表的字段改名:
+
+```
+CREATE TABLE newadmin AS
+(
+    SELECT id, username AS uname, password AS pass FROM admin
+)
+```
+
+可以拷贝一部分数据:
+
+```
+CREATE TABLE newadmin AS
+(
+    SELECT * FROM admin WHERE LEFT(username,1) = 's'
+)
+```
+
+可以在创建表的同时定义表中的字段信息:
+
+```
+CREATE TABLE newadmin
+(
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY
+)
+AS
+(
+    SELECT * FROM admin
+)
+```
+
+命令备份
+
+    CREATE TABLE `hist_day_data_with_index` (
+      `id` bigint NOT NULL PRIMARY KEY AUTO_INCREMENT,
+      `date` date NOT NULL,
+      `code` char(6) NOT NULL,
+      `open` float NOT NULL,
+      `high` float NOT NULL,
+      `close` float NOT NULL,
+      `low` float NOT NULL,
+      `volume` float NOT NULL,
+      `price_change` float NOT NULL,
+      `p_change` float NOT NULL,
+      `ma5` float NOT NULL,
+      `ma10` float NOT NULL,
+      `ma20` float NOT NULL,
+      `v_ma5` float NOT NULL,
+      `v_ma10` float NOT NULL,
+      `v_ma20` float NOT NULL,
+      `turnover` float NOT NULL DEFAULT '0',
+      UNIQUE `code_date_index` (`code`,`date`),
+      INDEX `date_index` (`date`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    CREATE TABLE `hist_day_data_with_index` (
+      `id` bigint NOT NULL AUTO_INCREMENT,
+      `date` date NOT NULL,
+      `code` char(6) NOT NULL,
+      `open` float NOT NULL,
+      `high` float NOT NULL,
+      `close` float NOT NULL,
+      `low` float NOT NULL,
+      `volume` float NOT NULL,
+      `price_change` float NOT NULL,
+      `p_change` float NOT NULL,
+      `ma5` float NOT NULL,
+      `ma10` float NOT NULL,
+      `ma20` float NOT NULL,
+      `v_ma5` float NOT NULL,
+      `v_ma10` float NOT NULL,
+      `v_ma20` float NOT NULL,
+      `turnover` float NOT NULL DEFAULT '0',
+      PRIMARY KEY (`id`),
+      UNIQUE `code_date_index` (`code`,`date`),
+      INDEX `date_index` (`date`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+    insert into hist_day_data_with_index (date, code, open, high, close, low, volume, price_change, p_change, ma5, ma10, ma20, v_ma5, v_ma10, v_ma20, turnover) select * from hist_day_data;
+
+    CREATE TABLE `personal_info_table` (
+      `id` bigint NOT NULL AUTO_INCREMENT,
+      `name` vchar(12) NOT NULL,
+      `age` tinyint NOT NULL,
+      `origin` vchar(4) NOT NULL,
+      `home_addr` vchar(64) NOT NULL,
+      `personal_id` char(18) not NULL,
+      PRIMARY KEY (`id`),
+      UNIQUE `name_id_index` (`name`,`personal_id`),
+      INDEX `origin_index` (`origin`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    CREATE TABLE `personal_info_table` (
+      `id` bigint NOT NULL AUTO_INCREMENT,
+      `name` vchar(12) NOT NULL,
+      `age` tinyint NOT NULL,
+      `origin` vchar(4) NOT NULL,
+      `home_addr` vchar(64) NOT NULL,
+      `personal_id` char(18) not NULL,
+      PRIMARY KEY (`id`),
+      UNIQUE KEY `name_id_index` (`name`,`personal_id`),
+      INDEX `origin_index` (`origin`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    CREATE TABLE `personal_info_table` (
+      `id` bigint NOT NULL AUTO_INCREMENT,
+      `name` vchar(12) NOT NULL,
+      `age` tinyint NOT NULL,
+      `origin` vchar(4) NOT NULL,
+      `home_addr` vchar(64) NOT NULL,
+      `personal_id` char(18) not NULL,
+      PRIMARY KEY (`id`),
+      UNIQUE INDEX `name_id_index` (`name`,`personal_id`),
+      INDEX `origin_index` (`origin`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    CREATE TABLE `personal_info_table` (
+      `id` bigint NOT NULL AUTO_INCREMENT,
+      `name` vchar(12) NOT NULL,
+      `age` tinyint NOT NULL,
+      `origin` vchar(4) NOT NULL,
+      `home_addr` vchar(64) NOT NULL,
+      `personal_id` char(18) not NULL,
+      PRIMARY KEY (`id`),
+      UNIQUE `name_id_index` (`name`,`personal_id`),
+      KEY `origin_index` (`origin`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    以上4条创建personal_info_table表的语句是一样的，在MySQL中，KEY和INDEX都表示的是索引，实际使用可以互换。
+
 * ##### 
 * ##### 
 * ##### 
