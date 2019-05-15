@@ -297,9 +297,9 @@ mysql> select count(DISTINCT code) as code_count, count(*) as line_count from hi
 
 * ##### MySQL复制表
 
-https://www.runoob.com/mysql/mysql-clone-tables.html
+[https://www.runoob.com/mysql/mysql-clone-tables.html](https://www.runoob.com/mysql/mysql-clone-tables.html)
 
-https://blog.csdn.net/xiao190128/article/details/54890367
+[https://blog.csdn.net/xiao190128/article/details/54890367](https://blog.csdn.net/xiao190128/article/details/54890367)
 
 第一、只复制表结构到新表
 
@@ -464,7 +464,18 @@ AS
 
     以上4条创建personal_info_table表的语句是一样的，在MySQL中，KEY和INDEX都表示的是索引，实际使用可以互换。
 
-* ##### 
+* ##### MySQL生成随机测试数据
+
+  https://www.cnblogs.com/tmdba/p/6444855.html
+
+  https://blog.csdn.net/qq\_16946803/article/details/81870174
+
+  https://blog.csdn.net/dennis211/article/details/78076399
+
+  https://blog.csdn.net/qq\_36608163/article/details/81504314
+
+  https://blog.csdn.net/lightofmiracle/article/details/74004511
+
 * ##### 
 * ##### 
 * ##### 
