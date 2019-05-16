@@ -78,6 +78,13 @@ alter table hist_week_data add index date_index(date);
 alter table hist_month_data add index date_index(date);
 ```
 
+* ##### 查看索引
+
+```
+show index from stock.hist_day_data;
+show index from stock.hist_day_data_with_index;
+```
+
 * ##### 查看表结构
 
 ```
@@ -478,9 +485,9 @@ AS
 
 ##### MySQL随机读数据
 
-http://ourmysql.com/archives/524
+[http://ourmysql.com/archives/524](http://ourmysql.com/archives/524)
 
-https://www.zhihu.com/question/29824101
+[https://www.zhihu.com/question/29824101](https://www.zhihu.com/question/29824101)
 
 * ##### 
 * ##### 
