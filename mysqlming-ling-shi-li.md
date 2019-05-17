@@ -150,6 +150,8 @@ select if(dayofweek(last_day(subdate('2019-04-01', interval 1 month))) > 1, if(d
 
 [http://wiki.jikexueyuan.com/project/mysql/useful-functions/time-functions.html](http://wiki.jikexueyuan.com/project/mysql/useful-functions/time-functions.html)
 
+[http://www.mysqlab.net/docs/view/refman-5.1-zh/chapter/functions.html](http://www.mysqlab.net/docs/view/refman-5.1-zh/chapter/functions.html)
+
 ```
 mysql> select now();
 +---------------------+
