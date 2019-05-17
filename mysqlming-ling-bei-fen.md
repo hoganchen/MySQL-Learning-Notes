@@ -14,6 +14,12 @@ select * from hist_60m_data where date = '2018-09-03 15:00:00' and  ma5 < ma10 *
 select code from hist_15m_data where date >= '2018-09-05 09:45:00' and date <= '2018-09-05 15:00:00' and  ma5 < ma10 * 0.95 and ma10 < ma20 * 0.95 group by code;
 ```
 
+* ##### 查询某列最大值所在的行
+
+```
+select * from hist_extend_day_data where (code, volume) in (select code, max(volume) from hist_extend_day_data group by code) and date > '2019-05-01';
+```
+
 * ##### create\_table\_cmd
 
 ```
