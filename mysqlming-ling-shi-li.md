@@ -112,9 +112,13 @@ mysql> select count(distinct date)/count(*), count(distinct code)/count(*), coun
 * ##### 查找某列最大值，最小值
 
 ```
+看起来在这种条件上加上where是否说从2019年开始去查找
+
 select code, min(close) from hist_day_data_with_index where close > 20 group by code;
 
 select code, max(close) from hist_day_data_with_index where close < 20 group by code;
+
+select code, min(close) from hist_day_data_with_index where date > '2019-01-01' and close > 20 group by code;
 ```
 
 * ##### 查看表的条目数
