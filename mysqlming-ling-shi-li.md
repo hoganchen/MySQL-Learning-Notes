@@ -481,24 +481,46 @@ AS
 
 * ##### MySQL生成随机测试数据
 
-[https://www.cnblogs.com/tmdba/p/6444855.html](https://www.cnblogs.com/tmdba/p/6444855.html)
-
-[https://blog.csdn.net/qq\_16946803/article/details/81870174](https://blog.csdn.net/qq_16946803/article/details/81870174)
-
-[https://blog.csdn.net/dennis211/article/details/78076399](https://blog.csdn.net/dennis211/article/details/78076399)
-
-[https://blog.csdn.net/qq\_36608163/article/details/81504314](https://blog.csdn.net/qq_36608163/article/details/81504314)
-
-[https://blog.csdn.net/lightofmiracle/article/details/74004511](https://blog.csdn.net/lightofmiracle/article/details/74004511)
+```
+https://www.cnblogs.com/tmdba/p/6444855.html
+https://blog.csdn.net/qq_16946803/article/details/81870174
+https://blog.csdn.net/dennis211/article/details/78076399
+https://blog.csdn.net/qq_36608163/article/details/81504314
+https://blog.csdn.net/lightofmiracle/article/details/74004511
+```
 
 * ##### MySQL随机读数据
 
-[http://ourmysql.com/archives/524](http://ourmysql.com/archives/524)
+```
+http://ourmysql.com/archives/524
+https://www.zhihu.com/question/29824101
+```
 
-[https://www.zhihu.com/question/29824101](https://www.zhihu.com/question/29824101)
+* ##### MySQL日期函数
 
-* ##### 
-* ##### 
+```
+https://www.runoob.com/mysql/mysql-functions.html
+http://www.w3school.com.cn/sql/sql_dates.asp
+http://www.blogjava.net/Alpha/archive/2006/04/07/39844.html
+https://blog.csdn.net/rudygao/article/details/50628526
+https://www.cnblogs.com/ggjucheng/p/3352280.html
+
+https://codeday.me/bug/20180916/252005.html
+https://codeday.me/bug/20171007/79936.html
+https://stackoverflow.com/questions/3009896/get-the-first-and-last-date-of-next-month-in-mysql
+https://stackoverflow.com/questions/35050656/get-the-first-and-last-working-day-date-of-some-month-in-mysql
+```
+
+* ##### MySQL IF语句
+
+```
+https://www.yiibai.com/mysql/if-statement.html
+https://www.cnblogs.com/martinzhang/p/3220595.html
+https://blog.csdn.net/wzzfeitian/article/details/55097563
+https://blog.csdn.net/fu_zk/article/details/14057007
+http://www.youhutong.com/index.php/article/index/173.html
+```
+
 * ##### 
 * ##### 
 * ##### 
