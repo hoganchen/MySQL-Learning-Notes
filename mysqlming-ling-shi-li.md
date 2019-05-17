@@ -132,13 +132,12 @@ select count(1) from hist_week_data;
 select count(1) from hist_month_data;
 ```
 
-* ##### 获取上个月的最后一个工作日的日期
+* ##### 获取上个月的最后一个工作日的日期\(未处理节假日\)
 
 ```
 select if(dayofweek(last_day(subdate(now(), interval 1 month))) > 1, if(dayofweek(last_day(subdate(now(), interval 1 month))) > 6, subdate(last_day(subdate(now(), interval 1 month)), interval 1 day), last_day(subdate(now(), interval 1 month))), subdate(last_day(subdate(now(), interval 1 month)), interval 2 day));
 
 select if(dayofweek(last_day(subdate('2019-04-01', interval 1 month))) > 1, if(dayofweek(last_day(subdate('2019-04-01', interval 1 month))) > 6, subdate(last_day(subdate('2019-04-01', interval 1 month)), interval 1 day), last_day(subdate('2019-04-01', interval 1 month))), subdate(last_day(subdate('2019-04-01', interval 1 month)), interval 2 day));
-
 ```
 
 * ##### 日期加减操作
