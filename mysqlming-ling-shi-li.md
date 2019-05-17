@@ -109,6 +109,14 @@ mysql> select count(distinct date)/count(*), count(distinct code)/count(*), coun
 1 row in set (1.04 sec)
 ```
 
+* ##### 查找某列最大值，最小值
+
+```
+select code, min(close) from hist_day_data_with_index where close > 20 group by code;
+
+select code, max(close) from hist_day_data_with_index where close < 20 group by code;
+```
+
 * ##### 查看表的条目数
 
 [https://zhuanlan.zhihu.com/p/28397595](https://zhuanlan.zhihu.com/p/28397595)
