@@ -16,6 +16,20 @@ select code from hist_15m_data where date >= '2018-09-05 09:45:00' and date <= '
 
 * ##### 查询某列最大值所在的行
 
+[https://blog.csdn.net/lanyang123456/article/details/61647140](https://blog.csdn.net/lanyang123456/article/details/61647140)
+
+[http://database.51cto.com/art/201009/225462\_all.htm](http://database.51cto.com/art/201009/225462_all.htm)
+
+[https://wiki.jikexueyuan.com/project/mysql/useful-functions/min.html](https://wiki.jikexueyuan.com/project/mysql/useful-functions/min.html)
+
+[https://blog.csdn.net/jgmydsai/article/details/18358115](https://blog.csdn.net/jgmydsai/article/details/18358115)
+
+[https://codeday.me/bug/20170218/1297.html](https://codeday.me/bug/20170218/1297.html)
+
+[https://stackoverflow.com/questions/55953765/how-to-select-the-row-where-the-date-is-null-or-max-date-for-that-group](https://stackoverflow.com/questions/55953765/how-to-select-the-row-where-the-date-is-null-or-max-date-for-that-group)
+
+[https://stackoverflow.com/questions/tagged/greatest-n-per-group](https://stackoverflow.com/questions/tagged/greatest-n-per-group)
+
 ```
 select * from hist_extend_day_data where (code, volume) in (select code, max(volume) from hist_extend_day_data group by code) and date > '2019-05-01';
 ```
