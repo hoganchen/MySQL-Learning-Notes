@@ -35,6 +35,7 @@ select * from hist_extend_day_data where (code, volume) in (select code, max(vol
 
 先从过去一年中筛选最小值，然后再查询符合条件的行
 select * from hist_extend_week_data where (code, close) in (select code, min(close) from hist_day_data_with_index where date > date_sub(now(), interval 1 year) and close > 20 group by code) and date > '2019-05-10';
+select * from hist_extend_week_data where (code, close) in (select code, min(close) from hist_day_data_with_index where date > date_sub(now(), interval 1 year) group by code) and date > '2019-04-01';
 ```
 
 * ##### create\_table\_cmd
