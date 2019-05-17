@@ -132,6 +132,15 @@ select count(1) from hist_week_data;
 select count(1) from hist_month_data;
 ```
 
+* ##### 获取上个月的最后一个工作日的日期
+
+```
+select if(dayofweek(last_day(subdate(now(), interval 1 month))) > 1, if(dayofweek(last_day(subdate(now(), interval 1 month))) > 6, subdate(last_day(subdate(now(), interval 1 month)), interval 1 day), last_day(subdate(now(), interval 1 month))), subdate(last_day(subdate(now(), interval 1 month)), interval 2 day));
+
+select if(dayofweek(last_day(subdate('2019-04-01', interval 1 month))) > 1, if(dayofweek(last_day(subdate('2019-04-01', interval 1 month))) > 6, subdate(last_day(subdate('2019-04-01', interval 1 month)), interval 1 day), last_day(subdate('2019-04-01', interval 1 month))), subdate(last_day(subdate('2019-04-01', interval 1 month)), interval 2 day));
+
+```
+
 * ##### 日期加减操作
 
 [https://www.yiibai.com/mysql/today.html](https://www.yiibai.com/mysql/today.html)
@@ -471,7 +480,7 @@ AS
 
     以上4条创建personal_info_table表的语句是一样的，在MySQL中，KEY和INDEX都表示的是索引，实际使用可以互换。
 
-##### MySQL生成随机测试数据
+* ##### MySQL生成随机测试数据
 
 [https://www.cnblogs.com/tmdba/p/6444855.html](https://www.cnblogs.com/tmdba/p/6444855.html)
 
@@ -483,7 +492,7 @@ AS
 
 [https://blog.csdn.net/lightofmiracle/article/details/74004511](https://blog.csdn.net/lightofmiracle/article/details/74004511)
 
-##### MySQL随机读数据
+* ##### MySQL随机读数据
 
 [http://ourmysql.com/archives/524](http://ourmysql.com/archives/524)
 
