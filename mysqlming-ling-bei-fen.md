@@ -14,6 +14,20 @@ select * from hist_60m_data where date = '2018-09-03 15:00:00' and  ma5 < ma10 *
 select code from hist_15m_data where date >= '2018-09-05 09:45:00' and date <= '2018-09-05 15:00:00' and  ma5 < ma10 * 0.95 and ma10 < ma20 * 0.95 group by code;
 ```
 
+* ##### 从周线选股并验证
+
+```
+select code, date, close from stock.hist_day_data where code in (select code from stock.hist_extend_week_data where date = '2019-04-30' and close > ma5 * 1.2 and volume < v_ma5 * 0.8 and volume > v_ma60) and date = '2019-04-30' union select code, date, close from stock.hist_day_data where code in (select code from stock.hist_extend_week_data where date = '2019-04-30' and close > ma5 * 1.2 and volume < v_ma5 * 0.8 and volume > v_ma60) and date = '2019-05-17';
+
+select code, date, close from stock.hist_day_data where code in (select code from stock.hist_extend_week_data where date = '2019-04-30' and close > ma5 * 1.1 and volume < v_ma5 * 0.8) and date = '2019-04-30' union select code, date, close from stock.hist_day_data where code in (select code from stock.hist_extend_week_data where date = '2019-04-30' and close > ma5 * 1.1 and volume < v_ma5 * 0.8) and date = '2019-05-17';
+
+select code, date, close from stock.hist_day_data where code in (select code from stock.hist_extend_week_data where date = '2019-04-30' and close > ma5 * 1.1 and volume < v_ma5 * 0.8) and (date = '2019-04-30' or date = '2019-05-17');
+
+select code, date, close from stock.hist_day_data where code in (select code from stock.hist_extend_week_data where date = '2019-04-30' and close > ma5 * 1.1 and close < v_ma250 and volume < v_ma5 * 0.6) and (date = '2019-05-17' or date = '2019-04-30');
+
+select code, date, close from stock.hist_day_data where code in (select code from stock.hist_extend_week_data where date = '2019-04-30' and close > ma5 * 1.1 and close < v_ma250 and volume < v_ma5 * 0.6) and (date = date_add('2019-04-30', interval 1 week) or date = '2019-04-30');
+```
+
 * ##### 查询某列最大值所在的行
 
 [https://blog.csdn.net/lanyang123456/article/details/61647140](https://blog.csdn.net/lanyang123456/article/details/61647140)
@@ -38,7 +52,6 @@ select * from hist_extend_week_data where (code, close) in (select code, min(clo
 select * from hist_extend_week_data where (code, close) in (select code, min(close) from hist_extend_week_data where date > date_sub(now(), interval 1 year) group by code) and date > '2019-04-01';
 
 select * from hist_extend_week_data where (code, close) in (select code, min(close) from hist_extend_week_data where date > date_sub(now(), interval 1 year) group by code) and date > '2019-05-01' and close > 10;
-
 ```
 
 * ##### create\_table\_cmd
